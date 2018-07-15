@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1 id="1233" class="display-4">Current username is {{name}}.</h1>
+        <h1><span class="badge badge-danger">Age: {{age}}</span></h1>
+    </div>  
+
+    <br><hr><br>
+
+    <button (click)="onClick()" class="btn btn-outline-primary">Button</button>
+    <br>
+    <hr>
+    <br>
+
+    <form (submit)='addHobby(hobby2.value)'>
+        <div class="form-group">
+            <label for="hobby">Hobby: </label>
+            <input type="text" class="input form-control" #hobby2 placeholder="Whats ur hobby?" />
+            <br>
+            <button class="btn btn-outline-warning mx-3" type="submit">Submit</button>
+        </div>
+    </form>
+
+    <br><hr>
+    <table class="table table-bordered" style="border:3px solid rgb(29, 11, 11);">
+        <thead class="thead-dark">
+            <tr style="width:400px;">
+                <th scope="col">Address: </th>
+                <th scope="col">Email: </th>
+                <th scope="col">Hobbies:</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                 {{address.street}} {{address.city}} {{address.state}}
+            </td>
+            <td>
+                {{email}}
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let hobby of hobby; let i = index">
+                        {{i + 1}}: {{hobby}}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <button class="btn btn-outline-dark" (click)="onClick()">Click me</button>
+    <br/><br/>
+    <button class="btn btn-outline-dark" (click)="toogleEdit()">Toogle Form</button>
+
+    <div *ngIf="isEdit">
+        <br/>
+        <h1>Edit User</h1>
+        <form>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" [(ngModel)]="name" name="name">
+            </div>
+            <div>
+                <label for="age">Age:</label>
+                <input type="number" [(ngModel)]="age" name="age">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" [(ngModel)]="email" name="email">
+            </div>
+            <div>
+                <label for="street">Street:</label>
+                <input type="text" [(ngModel)]="address.street" name="street">
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" [(ngModel)]="address.city" name="city">
+            </div>
+            <div>
+                <label for="state">State:</label>
+                <input type="text" [(ngModel)]="address.state" name="state">
+            </div>
+        </form>
+    </div>
+
+    <br/><br/>
+
+    <h1>Posts</h1>
+    <div *ngFor="let post of posts">
+        <h4>{{post.title}}</h4>
+        <p>{{post.body}}</p>
+    </div>
+
+</div>
